@@ -11,9 +11,16 @@ public class Seat {
     private int rowNumber;
     private int seatNumber;
     private boolean isOccupied;
+    private boolean isReserved;
 
     @Override
     public String toString() {
-        return "["+seatNumber+isOccupied+"]";
+        if (isReserved) {
+            return "[R]";
+        } else if (isOccupied) {
+            return "[X]";
+        } else {
+            return "[ ]";
+        }
     }
 }
