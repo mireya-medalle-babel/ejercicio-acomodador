@@ -5,7 +5,7 @@ import com.babel.ejercicioacomodador.model.Seat;
 import com.babel.ejercicioacomodador.service.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class AppAcomodador {
@@ -24,9 +24,17 @@ public class AppAcomodador {
         Config config = new Config();
         int rows = config.getDefaultRows();
         int cols = config.getDefaultCols();
-        int middleSeat = cols/2;
+        int middleSeat = cols / 2;
+
+        Map<Integer, List<Integer>> occupySeats = new HashMap<>();
+        List<Integer> seatNumbers = Arrays.asList(1, 2, 3, 4, 10);
+        occupySeats.put(0, seatNumbers);
+
+
         Seat[][] seats;
         seats = acomodadorService.inicializeSeats(rows, cols, middleSeat);
+        acomodadorService.inicializeOccupyseats(seats, occupySeats,  rows, cols);
+
 
         boolean continueReserving = true;
         int chosenOption;
@@ -73,4 +81,5 @@ public class AppAcomodador {
             }
         }
     }
+
 }

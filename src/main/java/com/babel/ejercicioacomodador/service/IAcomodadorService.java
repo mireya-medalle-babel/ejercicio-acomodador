@@ -3,6 +3,7 @@ package com.babel.ejercicioacomodador.service;
 import com.babel.ejercicioacomodador.model.Seat;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IAcomodadorService {
     void reserveSeats(Seat[][] seats, int tickets);
@@ -24,5 +25,8 @@ public interface IAcomodadorService {
 
     void reserveMostCenteredSeatsInUnoccupiedRow(Seat[] row, int tickets);
 
+    void inicializeOccupyseats(Seat[][] seats, Map<Integer, List<Integer>> occupySeats, int rows, int cols);
+
     Seat[][] inicializeSeats(int rows, int cols, int middleSeat);
+
 }

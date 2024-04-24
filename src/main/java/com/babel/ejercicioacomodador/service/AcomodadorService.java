@@ -4,7 +4,6 @@ import com.babel.ejercicioacomodador.model.Seat;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +57,6 @@ public class AcomodadorService implements IAcomodadorService {
     @Override
     public void reserveMostCenteredSeatsInOccupiedRow(Seat[] row, int tickets) {
         int starterSeat = bestSeatInOccupiedRow(row);
-        System.out.println(starterSeat);
         int seatsReserved = 0;
 
         if (starterSeat%2==0) {
@@ -101,7 +99,7 @@ public class AcomodadorService implements IAcomodadorService {
                 occupiedSeats++;
             }
         }
-        System.out.println(occupiedSeats+1);
+
 
         return occupiedSeats+1;
     }
@@ -143,6 +141,18 @@ public class AcomodadorService implements IAcomodadorService {
                 if (seat.getSeatNumber() == tickets) {
                     seat.setReserved(true);
                     tickets--;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void inicializeOccupyseats(Seat[][] seats, Map<Integer, List<Integer>> occupySeats, int rows, int cols) {
+        for (int i = 0; i < seats.length; i++) {
+            Seat[] row = seats[i];
+            for (int j = 0; j < row.length; j++) {
+                if (occupySeats.containsKey(i) && occupySeats.get(i).contains(seats[i][j].getSeatNumber())) {
+                    seats[i][j].setOccupied(true);
                 }
             }
         }

@@ -18,7 +18,7 @@ public class Config {
     private static final String COLS_KEY = "cols";
     private Properties configuration;
 
-    private void loadCofig() {
+    private void loadConfig() {
         configuration = new Properties();
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(CONFIGURATION_FILE);
 
@@ -30,7 +30,7 @@ public class Config {
     }
 
     public Config() {
-        loadCofig();
+        loadConfig();
     }
 
     public int getDefaultRows() {
